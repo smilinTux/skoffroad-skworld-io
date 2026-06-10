@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://skoffroad.skworld.io/sitemap.xml

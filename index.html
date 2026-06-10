@@ -22,13 +22,56 @@
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@smilinTux" />
+<meta name="twitter:creator" content="@smilinTux" />
 <meta name="twitter:title" content="skoffroad — get muddy. (now in your browser)" />
 <meta name="twitter:description" content="A free, open-source off-road sandbox in Rust. Plays in your browser — no install. Or grab a native build for Linux, macOS, or Windows." />
 <meta name="twitter:image" content="https://skoffroad.skworld.io/assets/og-card.png" />
 <meta name="twitter:image:alt" content="skoffroad — GET MUDDY. An open-source off-road sandbox in Rust." />
 
 <meta name="theme-color" content="#0c0a09" />
+<link rel="canonical" href="https://skoffroad.skworld.io/" />
+<link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://skworld.io/#org",
+      "name": "smilinTux",
+      "url": "https://skworld.io/",
+      "sameAs": ["https://github.com/smilinTux"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://skoffroad.skworld.io/#website",
+      "url": "https://skoffroad.skworld.io/",
+      "name": "skoffroad",
+      "description": "A free, open-source off-road sandbox built in Rust with Bevy and Avian3D. Plays in your browser via WebAssembly, or download native builds for Linux, macOS, and Windows.",
+      "publisher": { "@id": "https://skworld.io/#org" },
+      "inLanguage": "en-US"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://skoffroad.skworld.io/#app",
+      "name": "skoffroad",
+      "description": "A free, open-source off-road sandbox in Rust — procedural terrain, raycast suspension, weather, mud, ramps, P2P multiplayer trail rides, and 100+ plugins of chaos. Plays in your browser via WebAssembly or as a native build.",
+      "url": "https://skoffroad.skworld.io/",
+      "applicationCategory": "GameApplication",
+      "operatingSystem": "Web, Linux, macOS, Windows",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+      "codeRepository": "https://github.com/smilinTux/skoffroad",
+      "publisher": { "@id": "https://skworld.io/#org" },
+      "isPartOf": { "@id": "https://skoffroad.skworld.io/#website" }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
