@@ -76,13 +76,85 @@
   ]
 }
 </script>
+
+<!-- FAQ structured data (mirrors the on-page FAQ section) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does skoffroad cost?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Nothing. skoffroad is free and open source under GPL-3.0-or-later — no purchase, no ads, no microtransactions. You can play it in your browser or download native builds at no cost." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to install anything to play?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The full sandbox is compiled to WebAssembly and runs in a modern browser — one click, roughly a 10 MB download, no toolchain. Native builds for Linux, macOS, and Windows are also available if you prefer." }
+    },
+    {
+      "@type": "Question",
+      "name": "Which browsers are supported?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Any browser with WebGL2 works, including Chrome, Edge, Firefox, and Safari 17+. Enabling WebGPU unlocks the heavier post-processing effects, but the game falls back to WebGL2 automatically." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is skoffroad open source?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every line of the engine is public on GitHub under GPL-3.0-or-later. It is written in pure Rust on the Bevy engine with the Avian3D physics library, so you can read it, fork it, and mod it." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I build it from source?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. With Rust installed it is three commands: clone the repo, cd into it, and run cargo run --release. You can toggle feature flags to customise the build." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I import my own maps?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Drag and drop a heightmap PNG, a GLB mesh, or a real-world GPX track onto the window and the engine rebuilds the world around it on the fly." }
+    }
+  ]
+}
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="dns-prefetch" href="https://api.github.com" />
+<link rel="dns-prefetch" href="https://play.skoffroad.skworld.io" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <!-- Non-render-blocking font load: preload as style, then flip to stylesheet on load. -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
 <noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" /></noscript>
 <link rel="preload" as="image" href="assets/penguin-mascot.svg" fetchpriority="high" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="manifest" href="manifest.webmanifest" />
+
+<!-- Critical above-the-fold CSS, inlined to paint the nav + hero without
+     waiting on the full stylesheet. The full sheet is loaded non-blocking
+     just below (with a <noscript> fallback for no-JS users). -->
+<style>
+:root{--dirt-900:#0c0a09;--dirt-800:#1f1409;--dirt-700:#2b1d10;--dirt-600:#3a2a1c;--dirt-500:#4b3622;--mud-500:#d97706;--mud-400:#f59e0b;--mud-300:#fbbf24;--headlight:#fef3c7;--moss:#65a30d;--bone:#fafaf9;--steel:#a8a29e;--steel-d:#57534e;--display:'Bebas Neue','Impact',sans-serif;--body:'Inter',system-ui,-apple-system,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;--radius:14px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--body);font-size:16px;line-height:1.65;color:var(--bone);background:var(--dirt-900);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mud-400);outline-offset:2px;border-radius:4px}
+.skip-link{position:fixed;top:0;left:0;z-index:100;transform:translateY(-140%);padding:12px 20px;background:var(--mud-400);color:var(--dirt-900);font-weight:700;text-decoration:none;border-radius:0 0 var(--radius) 0;transition:transform .18s ease}
+.skip-link:focus{transform:translateY(0)}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.06}
+.nav{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(20px,5vw,60px);backdrop-filter:blur(14px) saturate(140%);background:rgba(12,10,9,.75);border-bottom:1px solid rgba(217,119,6,.15)}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--bone)}
+.brand-mark{width:32px;height:32px}
+.brand-name{font-family:var(--display);font-size:28px;letter-spacing:.06em}
+.nav-links{display:flex;gap:28px;align-items:center;font-size:14px;font-weight:500}
+.nav-toggle{display:none}
+.hero{position:relative;min-height:92vh;padding:clamp(60px,10vw,120px) clamp(20px,5vw,60px) 240px;overflow:hidden;isolation:isolate}
+.hero-content{position:relative;max-width:880px;margin:0 auto;text-align:center;z-index:2}
+.hero-title{font-family:var(--display);font-size:clamp(72px,14vw,200px);line-height:.85;margin:0 0 28px;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;font-family:var(--body);font-weight:700;font-size:15px;text-decoration:none;border-radius:999px;cursor:pointer;border:none}
+</style>
+
+<!-- Full stylesheet, loaded without blocking first paint. -->
+<link rel="preload" as="style" href="styles.css" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link rel="stylesheet" href="styles.css" /></noscript>
 </head>
 <body>
 
@@ -105,18 +177,27 @@
     </svg>
     <span class="brand-name">SKOFFROAD</span>
   </a>
-  <nav class="nav-links" aria-label="Primary">
+  <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">
+    <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+  </button>
+  <nav class="nav-links" id="primary-nav" aria-label="Primary">
     <a href="#play">Play</a>
     <a href="#download">Download</a>
     <a href="#features">Features</a>
+    <a href="#gallery">Gallery</a>
     <a href="#trails">Trails</a>
-    <a href="#stack">Stack</a>
     <a href="#build">Build</a>
+    <a href="#faq">FAQ</a>
+    <a href="#roadmap">Roadmap</a>
     <a href="#community">Community</a>
-    <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false" aria-label="Enable ambient sound" title="Sound is off — click to enable">
+    <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false" aria-label="Enable UI sounds" title="UI sounds off — click to enable">
       <svg class="sound-icon sound-icon-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
       <svg class="sound-icon sound-icon-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
       <span class="sound-toggle-label">Sound</span>
+    </button>
+    <button type="button" class="sound-toggle ambient-toggle" id="ambient-toggle" aria-pressed="false" aria-label="Play ambient soundscape" title="Ambient bed off — click to play">
+      <svg class="sound-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h3l2-7 4 18 3-11 2 4h4"/></svg>
+      <span class="sound-toggle-label">Ambient</span>
     </button>
     <a class="nav-cta" href="https://github.com/smilinTux/skoffroad" target="_blank" rel="noopener">GitHub ↗</a>
   </nav>
@@ -422,6 +503,58 @@
   </div>
 </section>
 
+<section id="gallery" class="section section-gallery" aria-labelledby="gallery-heading">
+  <div class="section-head">
+    <span class="kicker">/01b · a look at it</span>
+    <h2 id="gallery-heading">Scenes from the sandbox.</h2>
+    <p>Stylised illustrations of real in-game moments — the day/night cycle, mud and weather, and the ramps. Rendered here as lightweight SVG so the page stays fast; fire up the browser build to see the real thing.</p>
+  </div>
+  <div class="gallery-grid">
+    <figure class="shot">
+      <div class="shot-frame" role="img" aria-label="Illustration: a truck at golden hour on a ridge line">
+        <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><linearGradient id="g-dusk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c2d12"/><stop offset="0.5" stop-color="#b45309"/><stop offset="1" stop-color="#1a0f06"/></linearGradient></defs>
+          <rect width="400" height="240" fill="url(#g-dusk)"/>
+          <circle cx="300" cy="70" r="34" fill="#fde68a" opacity="0.9"/>
+          <path d="M0,160 L70,120 L140,150 L210,110 L280,150 L340,120 L400,150 L400,240 L0,240 Z" fill="#3a2a1c"/>
+          <path d="M0,200 L80,175 L160,200 L240,170 L320,200 L400,180 L400,240 L0,240 Z" fill="#1f1409"/>
+          <g transform="translate(150,168)"><rect x="0" y="-10" width="42" height="12" rx="3" fill="#d97706"/><rect x="4" y="-18" width="24" height="10" rx="2" fill="#d97706"/><circle cx="9" cy="4" r="6" fill="#0c0a09"/><circle cx="34" cy="4" r="6" fill="#0c0a09"/></g>
+        </svg>
+      </div>
+      <figcaption><strong>Golden hour</strong> — the full day/night cycle shifts sun angle, shadows, and sky colour as the clock runs.</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="shot-frame" role="img" aria-label="Illustration: a truck fording a muddy channel in the rain">
+        <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><linearGradient id="g-rain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c2622"/><stop offset="1" stop-color="#0c0a09"/></linearGradient></defs>
+          <rect width="400" height="240" fill="url(#g-rain)"/>
+          <g stroke="#a8a29e" stroke-width="1" opacity="0.35"><line x1="40" y1="0" x2="30" y2="40"/><line x1="120" y1="0" x2="110" y2="40"/><line x1="220" y1="10" x2="210" y2="50"/><line x1="320" y1="0" x2="310" y2="40"/><line x1="180" y1="0" x2="170" y2="40"/></g>
+          <path d="M0,150 L120,130 L240,150 L400,135 L400,190 L0,190 Z" fill="#2b1d10"/>
+          <rect x="0" y="185" width="400" height="55" fill="#3a2f28" opacity="0.85"/>
+          <ellipse cx="200" cy="196" rx="90" ry="10" fill="#4b3622" opacity="0.6"/>
+          <g transform="translate(178,168)"><rect x="0" y="-10" width="44" height="13" rx="3" fill="#65a30d"/><rect x="4" y="-19" width="26" height="11" rx="2" fill="#65a30d"/><circle cx="10" cy="6" r="7" fill="#0c0a09"/><circle cx="35" cy="6" r="7" fill="#0c0a09"/></g>
+        </svg>
+      </div>
+      <figcaption><strong>Mud &amp; rain</strong> — rain softens the ground into ruts that hold your tracks; read the crossing or float and stall.</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="shot-frame" role="img" aria-label="Illustration: a truck launching off a ramp into the air">
+        <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs><linearGradient id="g-air" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a0f06"/><stop offset="1" stop-color="#3a1f0a"/></linearGradient></defs>
+          <rect width="400" height="240" fill="url(#g-air)"/>
+          <g fill="#fbbf24" opacity="0.7"><circle cx="60" cy="40" r="1.5"/><circle cx="140" cy="24" r="1.5"/><circle cx="250" cy="36" r="1.5"/><circle cx="330" cy="20" r="1.5"/></g>
+          <polygon points="40,200 130,200 40,150" fill="#4b3622"/>
+          <path d="M130,200 L400,200 L400,240 L0,240 L0,205 Z" fill="#1f1409"/>
+          <g transform="translate(210,90) rotate(-18)"><rect x="0" y="-11" width="46" height="14" rx="3" fill="#f59e0b"/><rect x="5" y="-21" width="27" height="12" rx="2" fill="#f59e0b"/><circle cx="11" cy="6" r="7" fill="#0c0a09"/><circle cx="37" cy="6" r="7" fill="#0c0a09"/></g>
+          <g stroke="#f59e0b" stroke-width="2" opacity="0.5" stroke-linecap="round"><line x1="70" y1="150" x2="150" y2="110"/></g>
+        </svg>
+      </div>
+      <figcaption><strong>Ramps &amp; air</strong> — kickers and arrows feed the stunt-scoring loop: nitro on the runway, tuck the landing, bank the XP.</figcaption>
+    </figure>
+  </div>
+  <p class="gallery-note">Want the real frames? <a href="https://play.skoffroad.skworld.io" target="_blank" rel="noopener">Launch it in your browser ↗</a> — every scene above is a live, drivable part of the sandbox.</p>
+</section>
+
 <section id="trails" class="section section-trails" aria-labelledby="trails-heading">
   <div class="section-head">
     <span class="kicker">/02 · terrain &amp; trails</span>
@@ -562,9 +695,85 @@
   </div>
 </section>
 
+<section id="faq" class="section section-faq" aria-labelledby="faq-heading">
+  <div class="section-head">
+    <span class="kicker">/06 · questions</span>
+    <h2 id="faq-heading">Frequently asked.</h2>
+    <p>The short answers. For anything deeper, the code and the issue tracker are open.</p>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary><span>How much does it cost?</span><span class="faq-chev" aria-hidden="true">＋</span></summary>
+      <div class="faq-body"><p>Nothing. skoffroad is free and open source under GPL-3.0-or-later — no purchase, no ads, no microtransactions. Play in your browser or download native builds at no cost.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span>Do I need to install anything to play?</span><span class="faq-chev" aria-hidden="true">＋</span></summary>
+      <div class="faq-body"><p>No. The full sandbox is compiled to WebAssembly and runs in a modern browser — one click, roughly a 10&nbsp;MB download, no toolchain. Native builds for Linux, macOS, and Windows are there if you prefer.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span>Which browsers are supported?</span><span class="faq-chev" aria-hidden="true">＋</span></summary>
+      <div class="faq-body"><p>Any browser with WebGL2 — Chrome, Edge, Firefox, Safari 17+. Enabling <a href="#play">WebGPU</a> unlocks the heavier post-processing, but the game falls back to WebGL2 automatically.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span>Is it really open source?</span><span class="faq-chev" aria-hidden="true">＋</span></summary>
+      <div class="faq-body"><p>Yes — every line of the engine is public on <a href="https://github.com/smilinTux/skoffroad" target="_blank" rel="noopener">GitHub</a> under GPL-3.0-or-later. Pure Rust on Bevy + Avian3D. Read it, fork it, mod it.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span>Can I build it from source?</span><span class="faq-chev" aria-hidden="true">＋</span></summary>
+      <div class="faq-body"><p>Yes. With Rust installed it's three commands — clone, <code>cd</code>, <code>cargo run --release</code>. Toggle feature flags to customise the build. See the <a href="#build">build section</a> above.</p></div>
+    </details>
+    <details class="faq-item">
+      <summary><span>Can I import my own maps?</span><span class="faq-chev" aria-hidden="true">＋</span></summary>
+      <div class="faq-body"><p>Yes. Drag-drop a heightmap PNG, a GLB mesh, or a real-world GPX track onto the window and the engine rebuilds the world around it on the fly.</p></div>
+    </details>
+  </div>
+</section>
+
+<section id="roadmap" class="section section-roadmap" aria-labelledby="roadmap-heading">
+  <div class="section-head">
+    <span class="kicker">/07 · roadmap &amp; changelog</span>
+    <h2 id="roadmap-heading">Shipped in the open.</h2>
+    <p>skoffroad grows one sprint at a time, all in public. Below is the shape of the journey — the authoritative record lives in the <a href="https://github.com/smilinTux/skoffroad/blob/main/CHANGELOG.md" target="_blank" rel="noopener">changelog</a> and the <a href="https://github.com/smilinTux/skoffroad/issues" target="_blank" rel="noopener">issue tracker</a>.</p>
+  </div>
+  <ol class="timeline">
+    <li class="timeline-item is-done">
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <div class="timeline-body">
+        <span class="timeline-tag">shipped</span>
+        <h3>Core sandbox</h3>
+        <p>Raycast suspension, drivetrain simulation, procedural terrain, and the day/night cycle — the foundations, hardened over 60+ sprints.</p>
+      </div>
+    </li>
+    <li class="timeline-item is-done">
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <div class="timeline-body">
+        <span class="timeline-tag">shipped</span>
+        <h3>Weather, mud &amp; stunts</h3>
+        <p>Wind forces, rain, ruts, water crossings, ramps, trials, nitro, replay, and photo mode.</p>
+      </div>
+    </li>
+    <li class="timeline-item is-done">
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <div class="timeline-body">
+        <span class="timeline-tag">shipped</span>
+        <h3>Runs in the browser</h3>
+        <p>The same Rust engine compiled to WebAssembly, with WebGPU acceleration and a WebGL2 fallback — plus P2P multiplayer trail rides.</p>
+      </div>
+    </li>
+    <li class="timeline-item is-next">
+      <span class="timeline-dot" aria-hidden="true"></span>
+      <div class="timeline-body">
+        <span class="timeline-tag">in the open</span>
+        <h3>What's next</h3>
+        <p>Development continues in public — follow the <a href="https://github.com/smilinTux/skoffroad/commits/main" target="_blank" rel="noopener">commit history</a> and <a href="https://github.com/smilinTux/skoffroad/releases" target="_blank" rel="noopener">releases</a> for the latest, or open an issue to help steer it.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
 <section id="community" class="section section-community" aria-labelledby="community-heading">
   <div class="section-head">
-    <span class="kicker">/06 · community</span>
+    <span class="kicker">/08 · community</span>
     <h2 id="community-heading">Built in the open. Wrenched on together.</h2>
     <p>skoffroad is developed in public — every sprint, every plugin, every regression test lands on GitHub. Jump in wherever you like.</p>
   </div>
@@ -604,6 +813,10 @@
 </section>
 
 </main>
+
+<button type="button" class="back-to-top" aria-label="Back to top" title="Back to top">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
 
 <footer class="footer">
   <div class="footer-inner">
