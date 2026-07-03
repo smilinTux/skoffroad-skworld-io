@@ -79,10 +79,12 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <div class="grain" aria-hidden="true"></div>
 
 <header class="nav">
-  <a href="#" class="brand">
+  <a href="#" class="brand" aria-label="skoffroad — home">
     <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
       <circle cx="24" cy="24" r="22" fill="#0c0a09" stroke="#f59e0b" stroke-width="3"/>
       <circle cx="24" cy="24" r="10" fill="#f59e0b"/>
@@ -96,7 +98,7 @@
     </svg>
     <span class="brand-name">SKOFFROAD</span>
   </a>
-  <nav class="nav-links">
+  <nav class="nav-links" aria-label="Primary">
     <a href="#play">Play</a>
     <a href="#download">Download</a>
     <a href="#features">Features</a>
@@ -107,7 +109,9 @@
   </nav>
 </header>
 
-<section class="hero">
+<main id="main" tabindex="-1">
+
+<section class="hero" aria-labelledby="hero-title">
   <div class="hero-sky" aria-hidden="true"></div>
   <div class="hero-mountains" aria-hidden="true">
     <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
@@ -122,7 +126,7 @@
 
   <div class="hero-content">
     <span class="eyebrow" id="hero-eyebrow">S&amp;K&nbsp;OFFROAD · plays in your browser · multiplayer trail rides · GPL-3.0</span>
-    <h1 class="hero-title">
+    <h1 class="hero-title" id="hero-title">
       <span class="word">GET</span>
       <span class="word">MUDDY.</span>
     </h1>
@@ -158,14 +162,14 @@
   <div class="mud-splat splat-2" aria-hidden="true"></div>
 </section>
 
-<section id="play" class="section section-play-instant">
+<section id="play" class="section section-play-instant" aria-labelledby="play-heading">
   <div class="play-instant-card">
     <div class="play-instant-content">
       <span class="play-instant-badge">
         <span class="play-instant-pulse" aria-hidden="true"></span>
         new · WebAssembly build
       </span>
-      <h2 class="play-instant-title">Play instantly. No install.</h2>
+      <h2 class="play-instant-title" id="play-heading">Play instantly. No install.</h2>
       <p class="play-instant-tagline">
         The full sandbox compiled to WebAssembly. One click, ~10&nbsp;MB,
         and you're flinging mud — no Rust toolchain, no app store, no
@@ -296,10 +300,10 @@
   </details>
 </section>
 
-<section id="download" class="section section-download">
+<section id="download" class="section section-download" aria-labelledby="download-heading">
   <div class="section-head">
     <span class="kicker">/00 · grab a build</span>
-    <h2>Pre-compiled. Plug-and-play.</h2>
+    <h2 id="download-heading">Pre-compiled. Plug-and-play.</h2>
     <p>Pick your platform — no Rust toolchain, no compile time. Every link below resolves to the latest CI build from <a href="https://github.com/smilinTux/skoffroad/releases/latest" target="_blank" rel="noopener" class="download-release-link">the most recent release ↗</a>.</p>
   </div>
   <div class="download-grid">
@@ -345,10 +349,10 @@
   </p>
 </section>
 
-<section id="features" class="section section-features">
+<section id="features" class="section section-features" aria-labelledby="features-heading">
   <div class="section-head">
     <span class="kicker">/01 · what's in the box</span>
-    <h2>Everything an off-road sandbox should have.</h2>
+    <h2 id="features-heading">Everything an off-road sandbox should have.</h2>
     <p>Built from scratch in pure Rust on Bevy 0.18 + Avian3D 0.6. No engine licenses. No DRM. Just code you can read.</p>
   </div>
   <div class="feature-grid">
@@ -405,10 +409,10 @@
   </div>
 </section>
 
-<section id="stack" class="section section-stack">
+<section id="stack" class="section section-stack" aria-labelledby="stack-heading">
   <div class="section-head">
     <span class="kicker">/02 · the stack</span>
-    <h2>Pure Rust. No middleware tax.</h2>
+    <h2 id="stack-heading">Pure Rust. No middleware tax.</h2>
     <p>Every line of the engine is open. Audit it, fork it, mod it.</p>
   </div>
   <div class="stack-grid">
@@ -421,7 +425,7 @@
   </div>
 </section>
 
-<section id="stats" class="section section-stats">
+<section id="stats" class="section section-stats" aria-label="skoffroad by the numbers">
   <div class="stats-grid">
     <div class="stat">
       <span class="stat-number" data-target="12000">12,000</span>
@@ -442,10 +446,10 @@
   </div>
 </section>
 
-<section id="build" class="section section-play">
+<section id="build" class="section section-play" aria-labelledby="build-heading">
   <div class="section-head">
     <span class="kicker">/03 · build from source</span>
-    <h2>Three commands. Zero friction.</h2>
+    <h2 id="build-heading">Three commands. Zero friction.</h2>
     <p>If you've got Rust installed, you're 60 seconds from mud-flinging — locally, with whatever feature flags you want.</p>
   </div>
   <div class="code-block" role="region" aria-label="Quickstart commands">
@@ -475,9 +479,9 @@
   </div>
 </section>
 
-<section class="section section-cta">
+<section class="section section-cta" aria-labelledby="cta-heading">
   <div class="cta-card">
-    <h2>Fork it. Mod it. Make it yours.</h2>
+    <h2 id="cta-heading">Fork it. Mod it. Make it yours.</h2>
     <p>GPL-3.0-or-later. Every commit, every plugin, every line — yours to study and remix.</p>
     <div class="cta-buttons">
       <a class="btn btn-primary" href="https://github.com/smilinTux/skoffroad" target="_blank" rel="noopener">Get the source</a>
@@ -486,13 +490,15 @@
   </div>
 </section>
 
+</main>
+
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
       <strong>SKOFFROAD</strong>
       <span>An open-source off-road sandbox.</span>
     </div>
-    <nav class="footer-links">
+    <nav class="footer-links" aria-label="Footer">
       <a href="https://github.com/smilinTux/skoffroad" target="_blank" rel="noopener">Game repo</a>
       <a href="https://github.com/smilinTux/skoffroad-skworld-io" target="_blank" rel="noopener">Site repo</a>
       <a href="https://github.com/smilinTux/skoffroad/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0</a>

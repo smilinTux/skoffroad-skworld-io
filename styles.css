@@ -44,6 +44,42 @@ body {
 
 a { color: inherit; }
 
+/* ============================ A11Y ============================ */
+
+/* Keyboard focus indicator — amber ring, matches the headlight palette.
+   Only shows for keyboard users (not mouse clicks) via :focus-visible. */
+:focus-visible {
+  outline: 3px solid var(--mud-400);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip-to-content link — off-screen until focused, then pinned top-left. */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transform: translateY(-140%);
+  padding: 12px 20px;
+  background: var(--mud-400);
+  color: var(--dirt-900);
+  font-family: var(--body);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 0 0 var(--radius) 0;
+  box-shadow: var(--shadow-soft);
+  transition: transform .18s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid var(--dirt-900);
+  outline-offset: 2px;
+}
+
+/* main landmark takes focus target off the skip link without an outline flash */
+main:focus { outline: none; }
+
 /* Subtle film grain across the whole page */
 .grain {
   position: fixed; inset: 0;
