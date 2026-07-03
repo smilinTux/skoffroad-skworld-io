@@ -4,7 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>skoffroad — get muddy. (an open-source off-road sandbox)</title>
-<meta name="description" content="skoffroad is a free, open-source off-road sandbox built in Rust with Bevy and Avian3D. Plays in your browser via WebAssembly, or download native builds for Linux, macOS, and Windows. Procedural terrain, raycast suspension, weather, mud, ramps, and 44 plugins of chaos." />
+<meta name="description" content="skoffroad is a free, open-source off-road sandbox built in Rust with Bevy and Avian3D. Plays in your browser via WebAssembly, or download native builds for Linux, macOS, and Windows. Procedural terrain, raycast suspension, weather, mud, ramps, and 100+ plugins of chaos." />
+<meta name="keywords" content="off-road game, open source game, Rust game, Bevy engine, Avian3D, WebAssembly game, physics sandbox, procedural terrain, free game, GPL-3.0" />
+<meta name="author" content="smilinTux" />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="color-scheme" content="dark" />
 
 <!-- Open Graph -->
 <meta property="og:title" content="skoffroad — get muddy. (now in your browser)" />
@@ -74,7 +78,10 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<!-- Non-render-blocking font load: preload as style, then flip to stylesheet on load. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+<noscript><link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" /></noscript>
+<link rel="preload" as="image" href="assets/penguin-mascot.svg" fetchpriority="high" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -152,7 +159,7 @@
   </div>
 
   <div class="hero-jeep" aria-hidden="true">
-    <img src="assets/penguin-mascot.svg" alt="" />
+    <img src="assets/penguin-mascot.svg" alt="" width="480" height="360" decoding="async" fetchpriority="high" />
     <div class="dust" aria-hidden="true">
       <span></span><span></span><span></span><span></span><span></span>
     </div>
