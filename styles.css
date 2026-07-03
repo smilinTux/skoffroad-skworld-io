@@ -1173,8 +1173,183 @@ kbd {
   .footer-links { justify-content: center; }
 }
 
+/* ============================ TRAILS ============================ */
+
+.section-trails {
+  background: linear-gradient(180deg, var(--dirt-800) 0%, var(--dirt-900) 100%);
+}
+.trail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.trail-card {
+  position: relative;
+  padding: 26px 26px 28px;
+  border: 1px solid rgba(101, 163, 13, 0.14);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(31, 20, 9, 0.7), rgba(12, 10, 9, 0.7));
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  overflow: hidden;
+}
+.trail-card::after {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--moss), var(--mud-400));
+  opacity: 0.6;
+}
+.trail-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(101, 163, 13, 0.4);
+  box-shadow: 0 20px 40px -20px rgba(101, 163, 13, 0.28);
+}
+.trail-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 12px;
+}
+.trail-card h3 {
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  margin: 0 0 8px;
+  color: var(--mud-300);
+}
+.trail-card p { margin: 0; color: var(--steel); font-size: 15px; }
+
+/* ============================ RIG / GEAR ============================ */
+
+.section-rig { background: var(--dirt-900); }
+.rig-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.rig-card {
+  padding: 24px;
+  border: 1px solid var(--dirt-600);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--dirt-800), var(--dirt-700));
+  transition: transform .18s ease, border-color .18s ease;
+}
+.rig-card:hover { transform: translateY(-3px); border-color: var(--mud-500); }
+.rig-num {
+  display: inline-block;
+  font-family: var(--display);
+  font-size: 30px;
+  letter-spacing: 0.04em;
+  color: var(--mud-400);
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.rig-card strong {
+  display: block;
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--bone);
+  margin-bottom: 6px;
+}
+.rig-card p { margin: 0; color: var(--steel); font-size: 14px; }
+
+/* ============================ COMMUNITY ============================ */
+
+.section-community {
+  background: linear-gradient(180deg, var(--dirt-900) 0%, var(--dirt-800) 100%);
+}
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.community-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 24px;
+  border: 1px solid var(--dirt-600);
+  border-radius: var(--radius);
+  background: var(--dirt-800);
+  text-decoration: none;
+  color: var(--bone);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+.community-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--mud-400);
+  background: var(--dirt-700);
+  box-shadow: 0 16px 34px -18px rgba(245, 158, 11, 0.3);
+}
+.community-icon { font-size: 26px; line-height: 1; margin-bottom: 4px; }
+.community-card strong { font-size: 17px; color: var(--mud-300); font-weight: 700; }
+.community-card > span:last-child { color: var(--steel); font-size: 14px; }
+
+/* ============================ SOUND TOGGLE ============================ */
+
+.sound-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--steel);
+  background: transparent;
+  border: 1.5px solid var(--steel-d);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color .15s ease, border-color .15s ease, background .15s ease;
+}
+.sound-toggle:hover { color: var(--mud-400); border-color: var(--mud-400); }
+.sound-toggle .sound-icon { display: none; }
+.sound-toggle .sound-icon-off { display: block; }
+.sound-toggle[aria-pressed="true"] {
+  color: var(--mud-300);
+  border-color: var(--mud-500);
+  background: rgba(217, 119, 6, 0.12);
+}
+.sound-toggle[aria-pressed="true"] .sound-icon-off { display: none; }
+.sound-toggle[aria-pressed="true"] .sound-icon-on { display: block; }
+.sound-toggle-label { line-height: 1; }
+
+@media (max-width: 720px) {
+  .sound-toggle-label { display: none; }
+  .sound-toggle { padding: 8px; }
+}
+
+/* ============================ SCROLL REVEAL ============================ */
+
+/* Applied by JS only when motion is allowed; JS adds .reveal to targets,
+   then .is-visible when they scroll into view. No-JS / reduced-motion users
+   never get the class, so content is always visible by default. */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 /* ============================ MOTION RESPECT ============================ */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0s !important; transition-duration: 0s !important; }
+  /* Safety net: never hide content if a reveal class slipped through. */
+  .reveal { opacity: 1 !important; transform: none !important; }
 }

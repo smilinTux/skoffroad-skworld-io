@@ -109,9 +109,15 @@
     <a href="#play">Play</a>
     <a href="#download">Download</a>
     <a href="#features">Features</a>
+    <a href="#trails">Trails</a>
     <a href="#stack">Stack</a>
-    <a href="#stats">Stats</a>
     <a href="#build">Build</a>
+    <a href="#community">Community</a>
+    <button type="button" class="sound-toggle" id="sound-toggle" aria-pressed="false" aria-label="Enable ambient sound" title="Sound is off — click to enable">
+      <svg class="sound-icon sound-icon-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      <svg class="sound-icon sound-icon-on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+      <span class="sound-toggle-label">Sound</span>
+    </button>
     <a class="nav-cta" href="https://github.com/smilinTux/skoffroad" target="_blank" rel="noopener">GitHub ↗</a>
   </nav>
 </header>
@@ -416,9 +422,79 @@
   </div>
 </section>
 
+<section id="trails" class="section section-trails" aria-labelledby="trails-heading">
+  <div class="section-head">
+    <span class="kicker">/02 · terrain &amp; trails</span>
+    <h2 id="trails-heading">Every ride is a different map.</h2>
+    <p>The world is generated from noise, not hand-placed. Reroll the seed and the ridgelines, valleys, and mud pits all move. Or drag in your own.</p>
+  </div>
+  <div class="trail-grid">
+    <article class="trail-card">
+      <span class="trail-tag" aria-hidden="true">seed · procedural</span>
+      <h3>Rolling backcountry</h3>
+      <p>Layered heightmap noise carves ridges, gullies, and off-camber climbs. Scattered boulders and log piles give the winch something to fight against.</p>
+    </article>
+    <article class="trail-card">
+      <span class="trail-tag" aria-hidden="true">weather · dynamic</span>
+      <h3>Mud &amp; rain</h3>
+      <p>Rain softens the ground into ruts that hold your tracks. Airdown, pick a line, and feel the tires bite — or dig in and spray slip smoke everywhere.</p>
+    </article>
+    <article class="trail-card">
+      <span class="trail-tag" aria-hidden="true">air · big</span>
+      <h3>Ramps &amp; trampolines</h3>
+      <p>Kickers, arrows, and bounce pads are sprinkled across the terrain for the stunt-scoring crowd. Nitro on the runway, tuck the landing, bank the XP.</p>
+    </article>
+    <article class="trail-card">
+      <span class="trail-tag" aria-hidden="true">import · PNG / GLB / GPX</span>
+      <h3>Bring your own map</h3>
+      <p>Drag-drop a heightmap PNG, a GLB mesh, or a real-world GPX track straight onto the window. The engine rebuilds the world around it on the fly.</p>
+    </article>
+    <article class="trail-card">
+      <span class="trail-tag" aria-hidden="true">time · day / night</span>
+      <h3>Full day/night cycle</h3>
+      <p>Drive from golden hour into headlight-only darkness. Sun angle, shadows, and sky colour all shift as the clock runs.</p>
+    </article>
+    <article class="trail-card">
+      <span class="trail-tag" aria-hidden="true">water · deep</span>
+      <h3>Water crossings</h3>
+      <p>Fording depth matters — hit a channel too fast and you'll float, splash, and stall. Read the crossing, keep momentum, make the far bank.</p>
+    </article>
+  </div>
+</section>
+
+<section id="rig" class="section section-rig" aria-labelledby="rig-heading">
+  <div class="section-head">
+    <span class="kicker">/03 · builds &amp; gear</span>
+    <h2 id="rig-heading">Set the rig up your way.</h2>
+    <p>The drivetrain is fully simulated, so the knobs actually change how the truck behaves. Tune before the trail, or adjust mid-crawl.</p>
+  </div>
+  <div class="rig-grid">
+    <div class="rig-card">
+      <span class="rig-num" aria-hidden="true">4WD</span>
+      <strong>Drivetrain</strong>
+      <p>Toggle 4WD, drop into low-range, and lock the diffs for the technical stuff.</p>
+    </div>
+    <div class="rig-card">
+      <span class="rig-num" aria-hidden="true">PSI</span>
+      <strong>Airdown</strong>
+      <p>Lower tire pressure for a bigger contact patch and more grip in soft ground.</p>
+    </div>
+    <div class="rig-card">
+      <span class="rig-num" aria-hidden="true">V8</span>
+      <strong>Engine &amp; fuel</strong>
+      <p>Real torque curves and a working fuel tank — a heavy right foot has a cost.</p>
+    </div>
+    <div class="rig-card">
+      <span class="rig-num" aria-hidden="true">⛓</span>
+      <strong>Winch &amp; recovery</strong>
+      <p>Stuck on a ledge? Anchor the winch and haul yourself out, or hit auto-flip.</p>
+    </div>
+  </div>
+</section>
+
 <section id="stack" class="section section-stack" aria-labelledby="stack-heading">
   <div class="section-head">
-    <span class="kicker">/02 · the stack</span>
+    <span class="kicker">/04 · the stack</span>
     <h2 id="stack-heading">Pure Rust. No middleware tax.</h2>
     <p>Every line of the engine is open. Audit it, fork it, mod it.</p>
   </div>
@@ -435,15 +511,15 @@
 <section id="stats" class="section section-stats" aria-label="skoffroad by the numbers">
   <div class="stats-grid">
     <div class="stat">
-      <span class="stat-number" data-target="12000">12,000</span>
+      <span class="stat-number" data-target="22000">22,000</span>
       <span class="stat-label">lines of Rust</span>
     </div>
     <div class="stat">
-      <span class="stat-number" data-target="44">44</span>
+      <span class="stat-number" data-target="100">100+</span>
       <span class="stat-label">plugins</span>
     </div>
     <div class="stat">
-      <span class="stat-number" data-target="40">40+</span>
+      <span class="stat-number" data-target="60">60+</span>
       <span class="stat-label">sprints shipped</span>
     </div>
     <div class="stat">
@@ -455,7 +531,7 @@
 
 <section id="build" class="section section-play" aria-labelledby="build-heading">
   <div class="section-head">
-    <span class="kicker">/03 · build from source</span>
+    <span class="kicker">/05 · build from source</span>
     <h2 id="build-heading">Three commands. Zero friction.</h2>
     <p>If you've got Rust installed, you're 60 seconds from mud-flinging — locally, with whatever feature flags you want.</p>
   </div>
@@ -483,6 +559,36 @@
       <li><kbd>.</kbd><span>Replay last 10s</span></li>
       <li><kbd>?</kbd><span>Full key reference</span></li>
     </ul>
+  </div>
+</section>
+
+<section id="community" class="section section-community" aria-labelledby="community-heading">
+  <div class="section-head">
+    <span class="kicker">/06 · community</span>
+    <h2 id="community-heading">Built in the open. Wrenched on together.</h2>
+    <p>skoffroad is developed in public — every sprint, every plugin, every regression test lands on GitHub. Jump in wherever you like.</p>
+  </div>
+  <div class="community-grid">
+    <a class="community-card" href="https://github.com/smilinTux/skoffroad" target="_blank" rel="noopener">
+      <span class="community-icon" aria-hidden="true">⭐</span>
+      <strong>Star &amp; watch</strong>
+      <span>Follow the repo to catch new builds and release notes as they drop.</span>
+    </a>
+    <a class="community-card" href="https://github.com/smilinTux/skoffroad/issues" target="_blank" rel="noopener">
+      <span class="community-icon" aria-hidden="true">🐛</span>
+      <strong>Report a bug</strong>
+      <span>Found a rollover that shouldn't happen? File it with a seed and we'll chase it.</span>
+    </a>
+    <a class="community-card" href="https://github.com/smilinTux/skoffroad/pulls" target="_blank" rel="noopener">
+      <span class="community-icon" aria-hidden="true">🔧</span>
+      <strong>Send a PR</strong>
+      <span>New plugin, new biome, a tuning tweak — the codebase is readable Rust, come tinker.</span>
+    </a>
+    <a class="community-card" href="https://github.com/smilinTux/skoffroad/blob/main/CHANGELOG.md" target="_blank" rel="noopener">
+      <span class="community-icon" aria-hidden="true">📓</span>
+      <strong>Read the changelog</strong>
+      <span>60+ sprints of history — see how the sandbox grew, one plugin at a time.</span>
+    </a>
   </div>
 </section>
 
