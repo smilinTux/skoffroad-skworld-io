@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "skoffroad: browser P2P multiplayer",
+    "subtitle": "No dedicated game server. Derived from skoffroad's README and docs/MULTIPLAYER.md (that repo has no mermaid source).",
+    "output": "skoffroad.architecture.html",
+    "quality_profile": "showcase"
+  },
+  "components": [
+    { "id": "ghpages", "type": "cloud", "label": "GitHub Pages", "sublabel": "play.skoffroad.skworld.io, static WASM bundle", "pos": [360, 20], "size": [200, 70] },
+    { "id": "peer_a", "type": "frontend", "label": "Player A Browser", "sublabel": "Bevy + Avian3D, compiled to WASM", "pos": [40, 210], "size": [200, 80] },
+    { "id": "peer_b", "type": "frontend", "label": "Player B Browser", "sublabel": "Bevy + Avian3D, compiled to WASM", "pos": [680, 210], "size": [200, 80] },
+    { "id": "signaling", "type": "backend", "label": "Signaling Server", "sublabel": "matchbox_server, wss://signaling", "pos": [360, 410], "size": [200, 80] },
+    { "id": "stun", "type": "external", "label": "STUN Servers", "sublabel": "Google / Cloudflare / Twilio", "pos": [240, 550], "size": [200, 70] },
+    { "id": "turn", "type": "external", "label": "TURN Server", "sublabel": "optional, operator-supplied", "pos": [460, 550], "size": [200, 70] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Browser peers (no dedicated game server)", "wraps": ["peer_a", "peer_b"] }
+  ],
+  "connections": [
+    { "id": "a-to-pages", "from": "peer_a", "to": "ghpages", "label": "HTTPS GET: WASM bundle", "variant": "default" },
+    { "id": "b-to-pages", "from": "peer_b", "to": "ghpages", "label": "HTTPS GET: WASM bundle", "variant": "default" },
+    { "id": "a-to-signal", "from": "peer_a", "to": "signaling", "label": "WebSocket: ICE/SDP exchange", "variant": "default" },
+    { "id": "b-to-signal", "from": "peer_b", "to": "signaling", "label": "WebSocket: ICE/SDP exchange", "variant": "default" },
+    { "id": "a-to-stun", "from": "peer_a", "to": "stun", "label": "STUN binding request", "variant": "default" },
+    { "id": "b-to-stun", "from": "peer_b", "to": "stun", "label": "STUN binding request", "variant": "default" },
+    { "id": "a-to-b", "from": "peer_a", "to": "peer_b", "label": "WebRTC P2P: state + voice (direct)", "variant": "emphasis" },
+    { "id": "a-to-turn", "from": "peer_a", "to": "turn", "label": "TURN relay (symmetric NAT only)", "variant": "dashed" },
+    { "id": "b-to-turn", "from": "peer_b", "to": "turn", "label": "TURN relay (symmetric NAT only)", "variant": "dashed" }
+  ],
+  "cards": [
+    { "dot": "cyan", "title": "Scope", "items": ["No dedicated game server. The signaling server only exchanges ICE candidates and SDP for the WebRTC handshake, then steps out of the path.", "Gameplay state (20 Hz, unreliable channel) and voice signaling (reliable channel) both travel directly peer to peer once connected.", "TURN is opt-in and operator-supplied. The shipped default is STUN-only, which is enough for most home networks and cloud VMs."] }
+  ]
+}
