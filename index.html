@@ -187,6 +187,7 @@ a{color:inherit}
     <a href="#gallery">Gallery</a>
     <a href="#trails">Trails</a>
     <a href="#build">Build</a>
+    <a href="#architecture">Architecture</a>
     <a href="#faq">FAQ</a>
     <a href="#roadmap">Roadmap</a>
     <a href="#community">Community</a>
@@ -638,6 +639,32 @@ a{color:inherit}
     <div class="stack-card"><span class="stack-version">0.25.0</span><strong>bevy_kira_audio</strong><span>Procedural audio</span></div>
     <div class="stack-card"><span class="stack-version">0.9.0</span><strong>noise</strong><span>Heightmaps</span></div>
     <div class="stack-card"><span class="stack-version">1.x</span><strong>serde</strong><span>Save files</span></div>
+  </div>
+</section>
+
+<section id="architecture" class="section section-gallery" aria-labelledby="architecture-heading">
+  <div class="section-head">
+    <span class="kicker">/04b · architecture</span>
+    <h2 id="architecture-heading">How the trail ride connects.</h2>
+    <p>No dedicated game server. A lightweight signaling server only trades ICE/SDP so two browsers can find each other, then chassis state (20&nbsp;Hz) and voice chat both travel directly peer-to-peer over WebRTC, same as the <a href="https://github.com/smilinTux/skoffroad/blob/main/docs/MULTIPLAYER.md" target="_blank" rel="noopener">multiplayer docs</a> describe.</p>
+  </div>
+  <div class="gallery-grid" style="grid-template-columns:minmax(280px,560px);justify-content:center;">
+    <figure class="shot">
+      <div class="shot-frame" role="img" aria-label="Illustration: two browsers linked directly by a thick peer-to-peer line, each also connected by a thin dashed line up to a small signaling server box">
+        <svg viewBox="0 0 400 240" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="240" fill="#0c0a09"/>
+          <line x1="85" y1="117" x2="315" y2="117" stroke="#fbbf24" stroke-width="3"/>
+          <line x1="85" y1="117" x2="200" y2="55" stroke="#a8a29e" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <line x1="315" y1="117" x2="200" y2="55" stroke="#a8a29e" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <rect x="165" y="30" width="70" height="40" rx="6" fill="#2b1d10" stroke="#f59e0b" stroke-width="2"/>
+          <rect x="40" y="90" width="90" height="55" rx="8" fill="#d97706"/>
+          <rect x="52" y="100" width="66" height="30" rx="3" fill="#0c0a09" opacity="0.6"/>
+          <rect x="270" y="90" width="90" height="55" rx="8" fill="#d97706"/>
+          <rect x="282" y="100" width="66" height="30" rx="3" fill="#0c0a09" opacity="0.6"/>
+        </svg>
+      </div>
+      <figcaption><strong>Peer-to-peer link.</strong> Chassis state and voice travel directly between browsers once the signaling server completes the WebRTC handshake. <a href="diagrams/skoffroad.architecture.html" target="_blank" rel="noopener">Open the interactive version ↗</a></figcaption>
+    </figure>
   </div>
 </section>
 
